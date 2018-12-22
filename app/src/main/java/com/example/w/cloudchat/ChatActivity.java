@@ -2,6 +2,8 @@ package com.example.w.cloudchat;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +25,7 @@ public class ChatActivity extends AppCompatActivity {
 
     EditText mEditTextMessage;
     Button mSendButton;
+    RecyclerView mMessagerRecycler;
 
     ArrayList<String> messages = new ArrayList<>();
 
@@ -32,6 +35,13 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
         mSendButton = findViewById(R.id.send_message_b);
         mEditTextMessage = findViewById(R.id.message_input);
+        mMessagerRecycler = findViewById(R.id.message_recycler);
+
+        mMessagerRecycler.setLayoutManager(new LinearLayoutManager(this));
+
+        final DataAdapter dataAdapter = new DataAdapter(this, messages);
+
+        mMessagerRecycler.setAdapter(dataAdapter);
 
         mSendButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +69,8 @@ public class ChatActivity extends AppCompatActivity {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 String msg = dataSnapshot.getValue(String.class);
                 messages.add(msg);
+                dataAdapter.notifyDataSetChanged();
+                mMessagerRecycler.smoothScrollToPosition(messages.size());
             }
 
             @Override
