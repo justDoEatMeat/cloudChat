@@ -23,6 +23,8 @@ public class ChatActivity extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("messages");
 
+
+
     EditText mEditTextMessage;
     Button mSendButton;
     RecyclerView mMessagerRecycler;
