@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CloudChat</string>
+    <string name="send_button_name">Send message</string>
 </resources>
