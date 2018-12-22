@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CloudChat</string>
+    <string name="send_button_name">Отправить</string>
+    <string name="send_edit_hint">Введите сообщение</string>
 </resources>
